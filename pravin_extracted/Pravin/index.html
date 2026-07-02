@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Premium Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="logo"><i class="fa-solid fa-gem"></i> Stackly </h1>
+            
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search for products...">
+            </div>
+
+            <div class="cart-icon-container" id="cartToggle">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h3><i class="fa-solid fa-filter"></i> Categories</h3>
+                <div id="categoryFilters" class="category-filters">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <!-- Categories will be dynamically added here -->
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3><i class="fa-solid fa-sort"></i> Sort By Price</h3>
+                <select id="sortSelect" class="sort-select">
+                    <option value="default">Default</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
+            </div>
+        </aside>
+
+        <section class="products-section">
+            <div id="statusMessage" class="status-message">
+                <div class="loader"></div>
+                <p>Loading premium products...</p>
+            </div>
+            
+            <div id="productsGrid" class="products-grid hidden">
+                <!-- Product cards will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content dynamically injected -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar/Modal -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="closeCart" class="close-cart"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: $<span id="cartTotalValue">0.00</span></div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
