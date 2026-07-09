@@ -1,0 +1,124 @@
+@use "../../styles/variables" as *;
+
+.cta-section {
+  padding: 15px 20px 80px;
+  background-color: $bg-white;
+  border-bottom: none;
+  overflow: hidden;
+
+  .cta-container {
+    max-width: 1100px !important;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+
+    @media (max-width: 950px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 40px;
+    }
+  }
+
+  .cta-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .cta-image-wrapper {
+      max-width: 480px;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+
+      .cta-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .cta-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (max-width: 950px) {
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: $text-navy;
+      margin-bottom: 16px;
+      line-height: 1.25;
+      font-family: $font-family;
+
+      @media (max-width: 600px) {
+        font-size: 24px;
+      }
+    }
+
+    .cta-subtitle {
+      font-size: 14px;
+      color: $text-gray;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 480px;
+      font-family: $font-family;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 320px;
+
+      @media (max-width: 950px) {
+        align-items: stretch;
+      }
+
+      .btn-primary {
+        background-color: $primary-teal !important;
+        color: white !important;
+        padding: 10px 20px !important;
+        border-radius: 8px !important;
+        text-transform: none !important;
+        font-weight: 600 !important;
+        font-size: 12px !important;
+        transition: $transition !important;
+        box-shadow: none !important;
+        font-family: $font-family !important;
+
+        &:hover {
+          background-color: $primary-teal-hover !important;
+          box-shadow: 0 4px 15px rgba(0, 139, 116, 0.2) !important;
+        }
+      }
+
+      .btn-outline {
+        background-color: transparent !important;
+        color: $primary-teal !important;
+        padding: 10px 20px !important;
+        border: 1px solid $primary-teal !important;
+        border-radius: 8px !important;
+        text-transform: none !important;
+        font-weight: 600 !important;
+        font-size: 12px !important;
+        transition: $transition !important;
+        font-family: $font-family !important;
+
+        &:hover {
+          background-color: $primary-teal-light !important;
+        }
+      }
+    }
+  }
+}

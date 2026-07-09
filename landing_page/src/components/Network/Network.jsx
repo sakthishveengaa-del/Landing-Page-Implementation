@@ -1,49 +1,50 @@
 import React from "react";
 import { Container, Button } from "@mui/material";
-import PersonalInjuryOutlinedIcon from "@mui/icons-material/PersonalInjuryOutlined";
-import SensorOccupiedOutlinedIcon from "@mui/icons-material/SensorOccupiedOutlined";
-import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
-import ScienceIcon from "@mui/icons-material/Science";
-import LocalPharmacyOutlinedIcon from "@mui/icons-material/LocalPharmacyOutlined";
-import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
+import { Icon } from "@iconify/react";
 
 import "./Network.scss";
 
+/**
+ * Network Component
+ * Renders the connected healthcare flow indicating how Patients, Doctors, Hospitals, etc.,
+ * relate to each other in the ecosystem.
+ */
 const Network = () => {
+  // Ordered nodes in the network flow diagram
   const nodes = [
     {
       id: "network-node-patients",
-      icon: <PersonalInjuryOutlinedIcon />,
+      icon: <Icon icon="hugeicons:patient" width="24" height="24" />,
       title: "Patients",
       description: "Manage your health and access care",
     },
     {
       id: "network-node-doctors",
-      icon: <SensorOccupiedOutlinedIcon />,
+      icon: <Icon icon="hugeicons:doctor-01" width="24" height="24" />,
       title: "Doctors",
       description: "Doctor care and consultations",
     },
     {
       id: "network-node-hospitals",
-      icon: <LocalHospitalOutlinedIcon />,
+      icon: <Icon icon="hugeicons:doctor-01" width="24" height="24" />,
       title: "Hospitals",
       description: "Streamline operations and patient care",
     },
     {
       id: "network-node-laboratories",
-      icon: <ScienceIcon />,
+      icon: <Icon icon="hugeicons:doctor-01" width="24" height="24" />,
       title: "Laboratories",
       description: "Accurate tests and timely reports",
     },
     {
       id: "network-node-pharmacies",
-      icon: <LocalPharmacyOutlinedIcon />,
+      icon: <Icon icon="hugeicons:doctor-01" width="24" height="24" />,
       title: "Pharmacies",
       description: "Dispense and deliver medicine with ease",
     },
     {
       id: "network-node-insurance",
-      icon: <GppGoodOutlinedIcon />,
+      icon: <Icon icon="hugeicons:doctor-01" width="24" height="24" />,
       title: "Insurance",
       description: "Simplify policies and claims",
     },
@@ -62,10 +63,12 @@ const Network = () => {
           </p>
         </div>
 
-        {/* Horizontal Connection Flow */}
+        {/* Horizontal Connection Flow Map */}
         <div className="network-flow">
           {nodes.map((node, index) => (
             <React.Fragment key={node.id}>
+              
+              {/* Individual Node Card */}
               <div className="flow-node" id={node.id}>
                 <div className="node-circle-wrapper">
                   <div className="node-circle">
@@ -76,6 +79,7 @@ const Network = () => {
                 <p>{node.description}</p>
               </div>
 
+              {/* Renders connecting arrows between nodes (excluding the last item) */}
               {index < nodes.length - 1 && (
                 <div className="flow-connector" aria-hidden="true">
                   <div className="connector-arrow"></div>
@@ -103,3 +107,4 @@ const Network = () => {
 };
 
 export default Network;
+

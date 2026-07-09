@@ -1,70 +1,70 @@
 import { Container } from "@mui/material";
 import ServiceCard from "./ServiceCard";
-
-import ContactEmergencyOutlinedIcon from "@mui/icons-material/ContactEmergencyOutlined";
-import BiotechIcon from "@mui/icons-material/Biotech";
-import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
-import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
-import HealthAndSafetyOutlinedIcon from "@mui/icons-material/HealthAndSafetyOutlined";
-import BroadcastOnPersonalIcon from "@mui/icons-material/BroadcastOnPersonal";
+import { Icon } from "@iconify/react";
 
 import "./Services.scss";
 
+/**
+ * Services Component
+ * Renders the section describing the platform services (consulation, lab tests, pharmacy, etc.).
+ * Maps details dynamically into sub-component ServiceCards.
+ */
 const Services = () => {
+  // Config data for platform services
   const servicesData = [
     {
       id: "services-card-doctor",
-      icon: <ContactEmergencyOutlinedIcon />,
+      icon: <Icon icon="hugeicons:doctor-01" width="24" height="24" />,
       title: "Doctor Consultation",
       description: "Book appointments with verified doctors across specialities.",
     },
     {
       id: "services-card-lab",
-      icon: <BiotechIcon />,
+      icon: <Icon icon="hugeicons:ai-dna" width="24" height="24" />,
       title: "Lab Tests",
       description: "Book lab tests at Home with certified laboratories.",
     },
     {
       id: "services-card-pharmacy",
-      icon: <MedicationOutlinedIcon />,
+      icon: <Icon icon="mage:tablet" width="24" height="24" />,
       title: "Online Pharmacy",
       description: "Order medicines online and get them delivered to your doorstep.",
     },
     {
       id: "services-card-records",
-      icon: <CreateNewFolderOutlinedIcon />,
+      icon: <Icon icon="lucide:folder-plus" width="24" height="24" />,
       title: "Health Records",
       description: "Access prescriptions, reports and medical history securely.",
     },
     {
       id: "services-card-insurance",
-      icon: <HealthAndSafetyOutlinedIcon />,
+      icon: <Icon icon="lucide:shield-plus" width="24" height="24" />,
       title: "Insurance Claims",
       description: "Verify coverage, file claims and track approvals.",
     },
     {
       id: "services-card-monitoring",
-      icon: <BroadcastOnPersonalIcon />,
+      icon: <Icon icon="mingcute:remote-fill" width="24" height="24" />,
       title: "Remote Monitoring",
       description: "Track your vitals and stay connected with your care team.",
     },
   ];
 
-
   return (
     <section className="services-section" id="solutions">
       <Container maxWidth="xl" className="services-container">
 
-        {/* Section Title */}
+        {/* Section Title & Sub-header */}
         <div className="services-header">
           <span className="pre-title">EVERYTHING YOU NEED FOR BETTER HEALTHCARE</span>
           <h2>
             Access care, diagnostics, medicines, records, <br />
-            insurance, and AI-powered health services from a <br /> <span className="highlight">single platform.</span>
+            insurance, and AI-powered health services from a <br />{" "}
+            <span className="highlight">single platform.</span>
           </h2>
         </div>
 
-        {/* Services Grid */}
+        {/* Dynamic Service Grid */}
         <div className="services-grid">
           {servicesData.map((service) => (
             <ServiceCard
@@ -83,3 +83,4 @@ const Services = () => {
 };
 
 export default Services;
+

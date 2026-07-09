@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import {
   AppBar,
   Toolbar,
@@ -16,127 +15,106 @@ import {
   Divider,
   useMediaQuery,
 } from "@mui/material";
-
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-
+import { Icon } from "@iconify/react";
 
 import logo from "../../assets/images/logo.png";
 import "./Navbar.scss";
 
+// Navigation links configurations
+const NAV_ITEMS = [
+  { label: "Home", id: "home", hasDropdown: false, isScroll: true },
+  { label: "Solutions", id: "solutions", hasDropdown: true, isScroll: false },
+  { label: "For Patients", id: "patients", hasDropdown: true, isScroll: false },
+  { label: "For Providers", id: "providers", hasDropdown: true, isScroll: false },
+  { label: "Pricing", id: "pricing", hasDropdown: false, isScroll: false },
+  { label: "Resources", id: "resources", hasDropdown: false, isScroll: false },
+];
+
+/**
+ * Navbar Component
+ * Renders header navigation with desktop menu items and a mobile responsive drawer menu.
+ */
 const Navbar = () => {
+  // Local state to manage mobile side-drawer open/close status
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Screen size checker for responsive layouts (950px breakpoint)
   const isMobile = useMediaQuery("(max-width:950px)");
 
+  // Close the mobile drawer automatically if screen size changes to desktop
   useEffect(() => {
-    if (isMobile === false) {
-      if (mobileOpen === true) {
-        setMobileOpen(false);
-      }
+    if (!isMobile && mobileOpen) {
+      setMobileOpen(false);
     }
   }, [isMobile, mobileOpen]);
 
+  // Handler to open or close the mobile navigation drawer
   const handleDrawerToggle = (event) => {
     if (event && event.currentTarget) {
       event.currentTarget.blur();
     }
-
-    if (mobileOpen === true) {
-      setMobileOpen(false);
-    } else {
-      setMobileOpen(true);
-    }
+    setMobileOpen((prevOpen) => !prevOpen);
   };
 
+  // Helper function for smooth scrolling to sections with offset header height
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; 
+      const headerOffset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+      const offsetPosition = elementPosition - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
 
+  // Handle mobile drawer clicks (scroll to target section, then close the drawer)
   const handleMobileNavClick = (id) => {
     handleScroll(id);
-    setMobileOpen(false); 
+    setMobileOpen(false);
   };
 
   return (
-    // Main top navigation bar
     <AppBar position="sticky" elevation={0} className="navbar">
       <Container maxWidth="xl">
         <Toolbar className="navbar-container">
 
-          {/* SECTION 1: Logo and Brand Info */}
+          {/* SECTION 1: Brand Logo & Title */}
           <Box className="logo-section" id="nav-logo-section" onClick={() => handleScroll("home")}>
             <img src={logo} alt="MediConnect Logo" className="logo" />
             <Box className="logo-text-wrapper">
-              <Typography className="logo-text">
-                MediConnect
-              </Typography>
-              <Typography className="logo-subtext">
-                Healthcare Ecosystem
-              </Typography>
+              <Typography className="logo-text">MediConnect</Typography>
+              <Typography className="logo-subtext">Healthcare Ecosystem</Typography>
             </Box>
           </Box>
 
-          {/* SECTION 2: Desktop Navigation Links (Hidden on mobile screens) */}
+          {/* SECTION 2: Desktop Navigation Menu */}
           <Box className="menu-section">
-            <Button disableRipple id="nav-btn-home" onClick={() => handleScroll("home")}>
-              Home
-            </Button>
-
-            <Button
-              disableRipple
-              endIcon={<KeyboardArrowDownIcon />}
-              id="nav-btn-solutions"
-            >
-              Solutions
-            </Button>
-
-            <Button
-              disableRipple
-              endIcon={<KeyboardArrowDownIcon />}
-              id="nav-btn-patients"
-            >
-              For Patients
-            </Button>
-
-            <Button
-              disableRipple
-              endIcon={<KeyboardArrowDownIcon />}
-              id="nav-btn-providers"
-            >
-              For Providers
-            </Button>
-
-            <Button disableRipple id="nav-btn-pricing">
-              Pricing
-            </Button>
-
-            <Button disableRipple id="nav-btn-resources">
-              Resources
-            </Button>
+            {NAV_ITEMS.map((item) => (
+              <Button
+                key={item.id}
+                disableRipple
+                id={`nav-btn-${item.id}`}
+                onClick={item.isScroll ? () => handleScroll(item.id) : undefined}
+                endIcon={item.hasDropdown ? <Icon icon="tabler:chevron-down" width="16" height="16" /> : undefined}
+              >
+                {item.label}
+              </Button>
+            ))}
           </Box>
 
-          {/* SECTION 3: Desktop Sign Up and Login Buttons */}
+          {/* SECTION 3: Auth Buttons (Sign up and Login) */}
           <Box className="auth-section">
             <Button
               className="signup-btn"
               variant="outlined"
               disableRipple
-              startIcon={<PersonOutlinedIcon />}
+              startIcon={<Icon icon="cuida:user-outline" width="18" height="18" />}
               id="nav-btn-signup"
             >
               Sign up
@@ -146,30 +124,30 @@ const Navbar = () => {
               className="login-btn"
               variant="contained"
               disableRipple
-              startIcon={<PersonOutlinedIcon />}
+              startIcon={<Icon icon="cuida:user-outline" width="18" height="18" />}
               id="nav-btn-login"
             >
               Login
             </Button>
           </Box>
 
-          {/* SECTION 4: Hamburger Menu Button (Only visible on mobile screens) */}
+          {/* SECTION 4: Hamburger Button for Mobile screens */}
           <IconButton
             className="mobile-menu-btn"
             aria-label="Open menu"
             onClick={handleDrawerToggle}
           >
-            <MenuIcon />
+            <Icon icon="tabler:menu-2" width="24" height="24" />
           </IconButton>
 
-          {/* SECTION 5: Slide-out Mobile Navigation Drawer */}
+          {/* SECTION 5: Responsive Mobile Navigation Drawer */}
           <Drawer
             anchor="right"
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{ paper: "mobile-drawer" }}
           >
-            {/* Drawer Header containing Logo and Close Button */}
+            {/* Mobile Drawer Header */}
             <Box className="drawer-header">
               <Box className="logo-section" onClick={() => handleMobileNavClick("home")}>
                 <img src={logo} alt="MediConnect Logo" className="logo" />
@@ -179,53 +157,33 @@ const Navbar = () => {
                 </Box>
               </Box>
               <IconButton onClick={handleDrawerToggle} aria-label="Close menu">
-                <CloseIcon />
+                <Icon icon="tabler:x" width="24" height="24" />
               </IconButton>
             </Box>
             <Divider />
-            
-            {/* Drawer Navigation Links */}
+
+            {/* Mobile Drawer List Links */}
             <List className="drawer-menu-list">
-              <ListItem disablePadding>
-                <ListItemButton onClick={() => handleMobileNavClick("home")} id="mobile-nav-btn-home">
-                  <ListItemText primary="Home" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton id="mobile-nav-btn-solutions" onClick={handleDrawerToggle}>
-                  <ListItemText primary="Solutions" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton id="mobile-nav-btn-patients" onClick={handleDrawerToggle}>
-                  <ListItemText primary="For Patients" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton id="mobile-nav-btn-providers" onClick={handleDrawerToggle}>
-                  <ListItemText primary="For Providers" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton id="mobile-nav-btn-pricing" onClick={handleDrawerToggle}>
-                  <ListItemText primary="Pricing" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton id="mobile-nav-btn-resources" onClick={handleDrawerToggle}>
-                  <ListItemText primary="Resources" />
-                </ListItemButton>
-              </ListItem>
+              {NAV_ITEMS.map((item) => (
+                <ListItem key={item.id} disablePadding>
+                  <ListItemButton
+                    id={`mobile-nav-btn-${item.id}`}
+                    onClick={item.isScroll ? () => handleMobileNavClick(item.id) : handleDrawerToggle}
+                  >
+                    <ListItemText primary={item.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
             </List>
             <Divider />
-            
-            {/* Drawer Action Buttons */}
+
+            {/* Mobile Drawer Auth Buttons */}
             <Box className="drawer-auth-section">
               <Button
                 className="signup-btn"
                 variant="outlined"
                 disableRipple
-                startIcon={<PersonOutlinedIcon />}
+                startIcon={<Icon icon="cuida:user-outline" width="18" height="18" />}
                 id="mobile-nav-btn-signup"
                 onClick={handleDrawerToggle}
                 fullWidth
@@ -236,7 +194,7 @@ const Navbar = () => {
                 className="login-btn"
                 variant="contained"
                 disableRipple
-                startIcon={<PersonOutlinedIcon />}
+                startIcon={<Icon icon="cuida:user-outline" width="18" height="18" />}
                 id="mobile-nav-btn-login"
                 onClick={handleDrawerToggle}
                 fullWidth
@@ -253,3 +211,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

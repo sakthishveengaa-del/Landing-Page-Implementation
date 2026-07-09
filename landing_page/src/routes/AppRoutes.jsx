@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-
 import LandingPage from "../pages/LandingPage";
 
+/**
+ * AppRoutes manages all the application routes.
+ * Currently, it renders the LandingPage at the root ("/") path.
+ */
 const AppRoutes = () => {
   return (
     <Routes>
@@ -10,4 +13,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default AppRoutes;

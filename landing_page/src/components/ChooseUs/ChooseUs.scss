@@ -1,0 +1,196 @@
+@use "../../styles/variables" as *;
+
+.choose-us-section {
+  padding: 40px 20px 80px;
+  background-color: $bg-white;
+  border-bottom: none;
+
+  .choose-us-container {
+    max-width: 1100px !important;
+    margin: 0 auto;
+  }
+
+  .choose-us-header {
+    text-align: center;
+    margin-bottom: 50px;
+
+    .pre-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: $primary-teal;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      font-family: $font-family;
+    }
+
+    h2 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 700;
+      color: $text-navy;
+      font-family: $font-family;
+
+      @media (max-width: 768px) {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  .choose-us-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .choose-us-card {
+    background-color: $bg-white !important;
+    border: 1px solid $border-light !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: $transition !important;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $card-shadow-hover !important;
+    }
+
+    .card-img-wrapper {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background-color: #f0f0f0;
+
+      .choose-us-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: $transition;
+      }
+    }
+
+    &#choose-us-card-ai,
+    &#choose-us-card-record,
+    &#choose-us-card-wellness,
+    &#choose-us-card-chat {
+      .card-img-wrapper {
+        background-color: $bg-white;
+        
+        .choose-us-card-img {
+          object-fit: contain;
+          padding: 8px;
+        }
+      }
+    }
+
+    &#choose-us-card-ai,
+    &#choose-us-card-record,
+    &#choose-us-card-wellness,
+    &#choose-us-card-chat {
+      .description {
+        color: #096B58 !important;
+        font-weight: 500;
+      }
+    }
+
+    &:hover .choose-us-card-img {
+      transform: scale(1.05);
+    }
+
+    .choose-us-card-content {
+      padding: 24px !important;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .card-title-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+
+        .icon-badge {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background-color: $primary-teal-light;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+
+          .choose-us-icon {
+            color: $primary-teal;
+            font-size: 20px;
+          }
+        }
+
+        h3 {
+          font-size: 16px;
+          font-weight: 600;
+          color: $text-navy;
+          margin: 0;
+          font-family: $font-family;
+        }
+      }
+
+      .description {
+        font-size: 13px;
+        color: $text-gray;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        font-family: $font-family;
+      }
+
+      .bullets-list {
+        list-style: none;
+        padding: 0;
+        margin: auto 0 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 12px;
+          color: $text-light;
+          font-family: $font-family;
+
+          .check-icon {
+            color: #0D8B72;
+            background-color: #EEF4F3;
+            border-radius: 50%;
+            font-size: 14px;
+            padding: 2px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          span {
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+  }
+}
