@@ -4,13 +4,7 @@ import { Icon } from "@iconify/react";
 
 import "./Network.scss";
 
-/**
- * Network Component
- * Renders the connected healthcare flow indicating how Patients, Doctors, Hospitals, etc.,
- * relate to each other in the ecosystem.
- */
 const Network = () => {
-  // Ordered nodes in the network flow diagram
   const nodes = [
     {
       id: "network-node-patients",
@@ -54,7 +48,6 @@ const Network = () => {
     <section className="network-section" id="providers">
       <Container maxWidth="xl" className="network-container">
 
-        {/* Section Header */}
         <div className="network-header">
           <span className="pre-title">ONE CONNECTED HEALTHCARE NETWORK</span>
           <h2>Built to connect every participant in the <br /> healthcare journey</h2>
@@ -63,12 +56,10 @@ const Network = () => {
           </p>
         </div>
 
-        {/* Horizontal Connection Flow Map */}
         <div className="network-flow">
           {nodes.map((node, index) => (
             <React.Fragment key={node.id}>
               
-              {/* Individual Node Card */}
               <div className="flow-node" id={node.id}>
                 <div className="node-circle-wrapper">
                   <div className="node-circle">
@@ -79,7 +70,6 @@ const Network = () => {
                 <p>{node.description}</p>
               </div>
 
-              {/* Renders connecting arrows between nodes (excluding the last item) */}
               {index < nodes.length - 1 && (
                 <div className="flow-connector" aria-hidden="true">
                   <div className="connector-arrow"></div>
@@ -89,7 +79,6 @@ const Network = () => {
           ))}
         </div>
 
-        {/* Action Button */}
         <div className="explore-action">
           <Button
             variant="contained"

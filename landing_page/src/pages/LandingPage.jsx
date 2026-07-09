@@ -9,17 +9,11 @@ import Reviews from "../components/Reviews/Reviews";
 import CtaBanner from "../components/CtaBanner/CtaBanner";
 import Footer from "../components/Footer/Footer";
 
-/**
- * LandingPage component compiles all the page sections.
- * Structured with a sticky Navbar, a Main content area, and a Footer.
- */
 const LandingPage = () => {
   return (
     <>
-      {/* Top Header Navigation */}
       <Navbar />
 
-      {/* Main Content Sections */}
       <main className="main-wrapper">
         <Hero />
         <Search />
@@ -31,7 +25,6 @@ const LandingPage = () => {
         <CtaBanner />
       </main>
 
-      {/* Page Footer */}
       <Footer />
     </>
   );

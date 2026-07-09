@@ -20,7 +20,6 @@ import { Icon } from "@iconify/react";
 import logo from "../../assets/images/logo.png";
 import "./Navbar.scss";
 
-// Navigation links configurations
 const NAV_ITEMS = [
   { label: "Home", id: "home", hasDropdown: false, isScroll: true },
   { label: "Solutions", id: "solutions", hasDropdown: true, isScroll: false },
@@ -30,25 +29,16 @@ const NAV_ITEMS = [
   { label: "Resources", id: "resources", hasDropdown: false, isScroll: false },
 ];
 
-/**
- * Navbar Component
- * Renders header navigation with desktop menu items and a mobile responsive drawer menu.
- */
 const Navbar = () => {
-  // Local state to manage mobile side-drawer open/close status
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Screen size checker for responsive layouts (950px breakpoint)
   const isMobile = useMediaQuery("(max-width:950px)");
 
-  // Close the mobile drawer automatically if screen size changes to desktop
   useEffect(() => {
     if (!isMobile && mobileOpen) {
       setMobileOpen(false);
     }
   }, [isMobile, mobileOpen]);
 
-  // Handler to open or close the mobile navigation drawer
   const handleDrawerToggle = (event) => {
     if (event && event.currentTarget) {
       event.currentTarget.blur();
@@ -56,7 +46,6 @@ const Navbar = () => {
     setMobileOpen((prevOpen) => !prevOpen);
   };
 
-  // Helper function for smooth scrolling to sections with offset header height
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -73,7 +62,6 @@ const Navbar = () => {
     }
   };
 
-  // Handle mobile drawer clicks (scroll to target section, then close the drawer)
   const handleMobileNavClick = (id) => {
     handleScroll(id);
     setMobileOpen(false);
@@ -84,7 +72,6 @@ const Navbar = () => {
       <Container maxWidth="xl">
         <Toolbar className="navbar-container">
 
-          {/* SECTION 1: Brand Logo & Title */}
           <Box className="logo-section" id="nav-logo-section" onClick={() => handleScroll("home")}>
             <img src={logo} alt="MediConnect Logo" className="logo" />
             <Box className="logo-text-wrapper">
@@ -93,7 +80,6 @@ const Navbar = () => {
             </Box>
           </Box>
 
-          {/* SECTION 2: Desktop Navigation Menu */}
           <Box className="menu-section">
             {NAV_ITEMS.map((item) => (
               <Button
@@ -108,7 +94,6 @@ const Navbar = () => {
             ))}
           </Box>
 
-          {/* SECTION 3: Auth Buttons (Sign up and Login) */}
           <Box className="auth-section">
             <Button
               className="signup-btn"
@@ -131,7 +116,6 @@ const Navbar = () => {
             </Button>
           </Box>
 
-          {/* SECTION 4: Hamburger Button for Mobile screens */}
           <IconButton
             className="mobile-menu-btn"
             aria-label="Open menu"
@@ -140,14 +124,12 @@ const Navbar = () => {
             <Icon icon="tabler:menu-2" width="24" height="24" />
           </IconButton>
 
-          {/* SECTION 5: Responsive Mobile Navigation Drawer */}
           <Drawer
             anchor="right"
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{ paper: "mobile-drawer" }}
           >
-            {/* Mobile Drawer Header */}
             <Box className="drawer-header">
               <Box className="logo-section" onClick={() => handleMobileNavClick("home")}>
                 <img src={logo} alt="MediConnect Logo" className="logo" />
@@ -162,7 +144,6 @@ const Navbar = () => {
             </Box>
             <Divider />
 
-            {/* Mobile Drawer List Links */}
             <List className="drawer-menu-list">
               {NAV_ITEMS.map((item) => (
                 <ListItem key={item.id} disablePadding>
@@ -177,7 +158,6 @@ const Navbar = () => {
             </List>
             <Divider />
 
-            {/* Mobile Drawer Auth Buttons */}
             <Box className="drawer-auth-section">
               <Button
                 className="signup-btn"

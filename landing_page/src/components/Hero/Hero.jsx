@@ -4,7 +4,6 @@ import { Icon } from "@iconify/react";
 import heroImage from "../../assets/images/hero-image.png";
 import "./Hero.scss";
 
-// Trust indicators showing platform scale & reliability
 const TRUST_ITEMS = [
   {
     icon: "codicon:workspace-trusted",
@@ -28,7 +27,6 @@ const TRUST_ITEMS = [
   },
 ];
 
-// Interactive overlay badges displayed on the right hero graphic
 const OVERLAY_CARDS = [
   {
     id: "overlay-find-doctors",
@@ -53,39 +51,30 @@ const OVERLAY_CARDS = [
   },
 ];
 
-/**
- * Hero Component
- * Renders the introductory section of the page, including value propositions, CTA buttons, and interactive badges.
- */
 const Hero = () => {
   return (
     <section className="hero" id="home">
       <Container maxWidth="xl" className="hero-container">
         
-        {/* Left Column: Headline and Call-To-Actions */}
         <div className="hero-left">
           
-          {/* Badge highlighting the ecosystem core */}
           <div className="hero-badge" id="hero-badge">
             <Icon icon="si:ai-fill" width="14" height="14" className="badge-icon" />
             <span>AI-Powered Healthcare Ecosystem</span>
           </div>
  
-          {/* Main Hero Header */}
           <h1 id="hero-heading">
             One Platform for the <br />
             Entire <span className="highlight">Healthcare</span> <br />
             Ecosystem
           </h1>
 
-          {/* Detailed subtitle for onboarding users */}
           <p className="hero-subtitle">
             Connect Patients, Doctors, Hospitals, Laboratories, <br />
             Pharmacies, Insurance, and Healthcare providers through one <br />
             secure AI-powered platform.
           </p>
 
-          {/* Primary & Secondary Call-To-Action buttons */}
           <div className="hero-buttons">
             <Button
               className="btn-primary"
@@ -107,7 +96,6 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Grid section showcasing trust factors */}
           <div className="hero-trust">
             {TRUST_ITEMS.map((item, idx) => (
               <div key={idx} className="trust-item">
@@ -123,11 +111,9 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Column: Visual illustration with contextual overlay cards */}
         <div className="hero-right">
           <div className="image-wrapper">
             
-            {/* The main background illustration image */}
             <img
               src={heroImage}
               alt="Healthcare Platform"
@@ -135,7 +121,6 @@ const Hero = () => {
               id="hero-main-image"
             />
 
-            {/* Overlay cards mapped from configurations */}
             {OVERLAY_CARDS.map((card) => (
               <div key={card.id} className={card.className} id={card.id}>
                 <div className="card-icon-container">

@@ -7,12 +7,7 @@ import kavyaImg from "../../assets/images/kavya.png";
 import rahulImg from "../../assets/images/rahul-sharma.png";
 import "./Reviews.scss";
 
-/**
- * Reviews Component
- * Renders patient testimonials and feedback alongside a star rating indicator.
- */
 const Reviews = () => {
-  // Testimonials list
   const reviews = [
     {
       id: "review-card-1",
@@ -57,7 +52,6 @@ const Reviews = () => {
       <Container maxWidth="xl" className="reviews-container">
         <div className="reviews-inner">
           
-          {/* Left Header Info */}
           <div className="reviews-left">
             <span className="pre-title">WHAT OUR PATIENTS SAY</span>
             <h2>Trusted by Millions</h2>
@@ -66,17 +60,14 @@ const Reviews = () => {
             </p>
           </div>
 
-          {/* Right Scrollable grid containing testimonial cards */}
           <div className="reviews-right">
             <div className="reviews-grid">
                {reviews.map((review) => (
                 <Card key={review.id} className="review-card" elevation={0} id={review.id}>
                   <CardContent className="review-card-content">
                     
-                    {/* Stars Indicator Row */}
                     <div className="stars-wrapper">
                       <div className="stars-row">
-                        {/* Generates star icons dynamically based on review rating value */}
                         {[...Array(review.stars)].map((_, i) => (
                           <Icon key={i} icon="tabler:star-filled" width="14" height="14" className="star-icon" />
                         ))}
@@ -84,13 +75,10 @@ const Reviews = () => {
                       <span className="rating-text">5/5</span>
                     </div>
 
-                    {/* Review Title */}
                     <h3 className="review-card-title">{review.title}</h3>
 
-                    {/* Review Comment */}
                     <p className="comment">"{review.comment}"</p>
 
-                    {/* User Info Avatar & Label */}
                     <div className="user-info">
                       <Avatar src={review.src} className="user-avatar" />
                       <div className="user-text">

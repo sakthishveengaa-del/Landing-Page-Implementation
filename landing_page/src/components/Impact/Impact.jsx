@@ -3,12 +3,7 @@ import { Icon } from "@iconify/react";
 
 import "./Impact.scss";
 
-/**
- * Impact Component
- * Renders statistical points representing the platform's volume and capabilities.
- */
 const Impact = () => {
-  // Key performance indicators (stats data)
   const stats = [
     {
       id: "impact-stat-users",
@@ -44,7 +39,6 @@ const Impact = () => {
     <section className="impact-section" id="impact">
       <Container maxWidth="xl" className="impact-container">
         
-        {/* Header Title & Catchphrase */}
         <div className="impact-header">
           <span className="pre-title">Our Impact in Numbers</span>
           <h2>
@@ -53,12 +47,10 @@ const Impact = () => {
           </h2>
         </div>
 
-        {/* Stats cards grid list */}
         <div className="impact-grid">
           {stats.map((stat) => (
             <Card key={stat.id} className="stat-card" elevation={0} id={stat.id}>
               <CardContent className="stat-card-content">
-                {/* Dynamically themed icon wrapper */}
                 <div className={`stat-icon-wrapper ${stat.colorClass}`}>
                   {stat.icon}
                 </div>

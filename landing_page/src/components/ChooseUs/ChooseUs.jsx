@@ -8,13 +8,7 @@ import teamChatImg from "../../assets/images/team-chat.png";
 
 import "./ChooseUs.scss";
 
-/**
- * ChooseUs Component
- * Explains the advantages of using MediConnect (AI Health Insights, Connected Records, etc.)
- * with cards featuring icon badges, description text, and verified checkmarks.
- */
 const ChooseUs = () => {
-  // Features config data
   const cardsData = [
     {
       id: "choose-us-card-ai",
@@ -70,23 +64,19 @@ const ChooseUs = () => {
     <section className="choose-us-section" id="choose-us">
       <Container maxWidth="xl" className="choose-us-container">
         
-        {/* Header Title */}
         <div className="choose-us-header">
           <span className="pre-title">WHY CHOOSE US?</span>
           <h2>Healthcare Powered by Intelligence</h2>
         </div>
 
-        {/* Cards Grid */}
         <div className="choose-us-grid">
           {cardsData.map((card) => (
             <Card key={card.id} className="choose-us-card" elevation={0} id={card.id}>
-              {/* Illustration banner */}
               <div className="card-img-wrapper">
                 <img src={card.image} alt="Feature Illustration" className="choose-us-card-img" />
               </div>
               
               <CardContent className="choose-us-card-content">
-                {/* Badge Icon and Title */}
                 <div className="card-title-row">
                   <div className="icon-badge">
                     {card.icon}
@@ -94,10 +84,8 @@ const ChooseUs = () => {
                   <h3>{card.title}</h3>
                 </div>
                 
-                {/* Feature Description */}
                 <p className="description">{card.description}</p>
                 
-                {/* Bullets verification checks list */}
                 <ul className="bullets-list">
                   {card.bullets.map((bullet, idx) => (
                     <li key={idx}>

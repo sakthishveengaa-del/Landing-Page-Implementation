@@ -4,13 +4,7 @@ import { Icon } from "@iconify/react";
 
 import "./Services.scss";
 
-/**
- * Services Component
- * Renders the section describing the platform services (consulation, lab tests, pharmacy, etc.).
- * Maps details dynamically into sub-component ServiceCards.
- */
 const Services = () => {
-  // Config data for platform services
   const servicesData = [
     {
       id: "services-card-doctor",
@@ -54,7 +48,6 @@ const Services = () => {
     <section className="services-section" id="solutions">
       <Container maxWidth="xl" className="services-container">
 
-        {/* Section Title & Sub-header */}
         <div className="services-header">
           <span className="pre-title">EVERYTHING YOU NEED FOR BETTER HEALTHCARE</span>
           <h2>
@@ -64,7 +57,6 @@ const Services = () => {
           </h2>
         </div>
 
-        {/* Dynamic Service Grid */}
         <div className="services-grid">
           {servicesData.map((service) => (
             <ServiceCard

@@ -44,17 +44,11 @@ const SOCIAL_MEDIA = [
 
 import { useState } from "react";
 
-/**
- * Footer Component
- * Renders brand description, platform features, external links, and social connections.
- */
 const Footer = () => {
-  // Local state variables for newsletter email input & validation message
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState("");
 
-  // Updates input state and dynamically clears validation error if input becomes valid
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
@@ -66,7 +60,6 @@ const Footer = () => {
     }
   };
 
-  // Triggers subscription action and handles conditional error messages
   const handleSubscribe = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -82,7 +75,6 @@ const Footer = () => {
       return;
     }
 
-    // Success state
     console.log("Subscribed email:", email);
     setEmail("");
     setError(false);
@@ -93,10 +85,8 @@ const Footer = () => {
     <footer className="footer-section" id="contact">
       <Container maxWidth="xl" className="footer-container">
         
-        {/* Upper Footer Grid */}
         <div className="footer-grid">
           
-          {/* Col 1: Branding Information */}
           <div className="footer-col branding-col">
             <div className="logo-section footer-logo-section">
               <img src={logoImg} alt="MediConnect Logo" className="logo" />
@@ -110,7 +100,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Col 2: Platform Links */}
           <div className="footer-col">
             <h4>Platform</h4>
             <ul>
@@ -128,7 +117,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 3: Resources Links */}
           <div className="footer-col">
             <h4>Resources</h4>
             <ul>
@@ -140,7 +128,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 4: Company Links */}
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
@@ -152,7 +139,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 5: Newsletter Subscription & Social Links */}
           <div className="footer-col newsletter-col">
             <h4>Newsletter</h4>
             <p className="newsletter-subtitle">
@@ -207,7 +193,6 @@ const Footer = () => {
 
         </div>
 
-        {/* Lower Footer */}
         <div className="footer-bottom">
           <p>@ 2026 Healthcare. All Rights Reserved. Privacy policy, Terms of Service, HIPAA Notice, Cookie Settings, Accessibility.</p>
         </div>
